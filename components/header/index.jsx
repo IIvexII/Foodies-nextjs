@@ -3,35 +3,28 @@ import Link from "next/link";
 import HeaderBackground from "./header-background";
 
 import Logo from "@/assets/logo.png";
+import NavLink from "./nav-link";
 
 export default function Header() {
   return (
     <>
       <HeaderBackground />
-      <header className='mx-20 my-8 flex justify-between items-center'>
-        <Link href='/' className='flex items-center gap-4'>
+      <header className="mx-20 my-8 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-4">
           <Image
             src={Logo}
             width={80}
             height={80}
-            alt='Image of a tasty food which is logo of this website'
+            alt="Image of a tasty food which is logo of this website"
+            priority
           />
-          <h1 className='text-4xl font-bold'>Foodies</h1>
+          <h1 className="text-4xl font-bold">Foodies</h1>
         </Link>
 
-        <nav className='flex gap-16 text-xl mr-32'>
-          <Link
-            href='/meals'
-            className='tracking-wide font-bold hover:text-orange-300 hover:[text-shadow:4px_4px_10px_rgba(255,165,0,0.8)]'
-          >
-            Browse Meals
-          </Link>
-          <Link
-            href='/community'
-            className='tracking-wide font-bold hover:text-orange-300 hover:[text-shadow:4px_4px_10px_rgba(255,165,0,0.8)]'
-          >
-            Foodies Community
-          </Link>
+        <nav className="mr-32 flex gap-16 text-xl">
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/meals">Browse Meals</NavLink>
+          <NavLink href="/community">Foodies Community</NavLink>
         </nav>
       </header>
     </>

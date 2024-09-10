@@ -1,4 +1,5 @@
 import Hero from "@/components/hero";
+import HighLightedText from "@/components/highlighted-text";
 
 export default function Home() {
   return (
@@ -7,7 +8,9 @@ export default function Home() {
 
       <main className="mx-auto flex max-w-screen-md flex-col gap-16 text-center">
         <section className="flex flex-col gap-8">
-          <h2 className="text-5xl text-gray-200">How it works</h2>
+          <HighLightedText className="text-5xl font-semibold">
+            How it works
+          </HighLightedText>
           <p className="text-2xl leading-normal text-gray-300">
             NextLevel Food is a platform for foodies to share their favorite
             recipes with the world. It&apos;s a place to discover new dishes,
@@ -20,7 +23,9 @@ export default function Home() {
         </section>
 
         <section className="flex flex-col gap-8">
-          <h2 className="text-5xl text-gray-200">Why NextLevel Food?</h2>
+          <HighLightedText className="text-5xl font-semibold">
+            Why NextLevel Food?
+          </HighLightedText>
           <p className="text-2xl leading-normal text-gray-300">
             NextLevel Food is a platform for foodies to share their favorite
             recipes with the world. It&apos;s a place to discover new dishes,

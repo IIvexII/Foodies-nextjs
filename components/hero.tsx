@@ -8,11 +8,8 @@ export default function Hero() {
     <div className="mt-16 flex h-[68vh] select-none flex-row justify-between gap-16 px-20">
       <ImageSlideShow className="h-[360px] w-[1020px]" />
       <div className="mt-8 flex flex-col justify-start gap-6">
-        {/* <h1 className="inline-block bg-gradient-to-br from-orange-600 to-orange-400 bg-clip-text text-5xl font-semibold uppercase tracking-wide text-transparent">
-          Nextlevel food for next level foodies
-        </h1> */}
-        <HighLightedText className="text-5xl font-semibold">
-          Nextlevel food for next level foodies
+        <HighLightedText className="text-5xl font-semibold uppercase">
+          Nextlevel food for nextlevel foodies
         </HighLightedText>
         <p className="text-3xl font-extralight">
           Taset & share from all over the world
