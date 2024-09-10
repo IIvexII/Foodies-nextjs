@@ -10,10 +10,10 @@ export default function HighLightedText({
   className,
 }: HighLightedTextProps) {
   return (
-    <h1
+    <span
       className={`inline-block bg-gradient-to-br from-orange-600 to-orange-400 bg-clip-text text-transparent ${className}`}
     >
       {children}
-    </h1>
+    </span>
   );
 }
