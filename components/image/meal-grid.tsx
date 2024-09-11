@@ -36,7 +36,10 @@ export default function MealGrid({ meals, className }: MealGridProps) {
               <p className="hyphens-auto text-xl font-light text-gray-300">
                 {meal?.summary}
               </p>
-              <CTAButton className="ml-auto w-36 scale-90 text-center text-lg">
+              <CTAButton
+                className="ml-auto w-36 scale-90 text-center text-lg"
+                href={`/meals/${meal.id}`}
+              >
                 View Details
               </CTAButton>
             </div>
