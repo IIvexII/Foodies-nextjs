@@ -1,20 +1,19 @@
+import { Suspense } from "react";
+
 import { CTAButton } from "@/components/cta-button";
 import HighLightedText from "@/components/highlighted-text";
 import MealGrid from "@/components/image/meal-grid";
-import { db } from "@/db";
-export default async function MealsPage() {
-  // extracting all the meals
-  const meals = await db.query.meals.findMany({
-    columns: {
-      id: true,
-      title: true,
-      image: true,
-      slug: true,
-      summary: true,
-      creator: true,
-    },
-  });
+import Loader from "@/components/loeader";
 
+import { getMeals } from "@/db/queries/meals";
+
+async function ShowMeals() {
+  const meals = await getMeals();
+
+  return <MealGrid className="px-16" meals={meals} />;
+}
+
+export default function MealsPage() {
   return (
     <>
       <header className="mt-16 flex flex-col gap-6 px-16">
@@ -28,8 +27,9 @@ export default async function MealsPage() {
           Share Your Favorite Recipe
         </CTAButton>
       </header>
-
-      <MealGrid className="px-16" meals={meals} />
+      <Suspense fallback={<Loader />}>
+        <ShowMeals />
+      </Suspense>
     </>
   );
 }
