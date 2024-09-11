@@ -39,8 +39,10 @@ export default function ImageSlideShow({ className }: ImageSlideShowProps) {
       {images.map((image, index) => (
         <Image
           key={index}
-          className={`absolute top-0 left-0 w-full h-full object-cover opacity-0 scale-110 translate-x-4 rotate-6 transition-all duration-1000 ${
-            activeImageIndex === index ? "opacity-100 z-20 scale-100 translate-x-0 rotate-0" : ""
+          className={`absolute left-0 top-0 h-[110%] w-[110%] translate-x-4 rotate-12 scale-110 object-cover opacity-0 transition-all duration-1000 ${
+            activeImageIndex === index
+              ? "z-20 !translate-x-0 !rotate-0 scale-100 opacity-100"
+              : ""
           }`}
           src={image.image}
           alt={image.alt}

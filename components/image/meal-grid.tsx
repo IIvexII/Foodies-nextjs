@@ -37,7 +37,7 @@ export default function MealGrid({ meals, className }: MealGridProps) {
                 {meal?.summary}
               </p>
               <CTAButton
-                className="ml-auto w-36 scale-90 text-center text-lg"
+                className="ml-auto scale-90 text-center text-lg"
                 href={`/meals/${meal.id}`}
               >
                 View Details
