@@ -10,6 +10,7 @@ export async function getMeals() {
 export async function getMeal(id: string) {
   const meal = await db.query.meals.findFirst({
     where: (meals, { eq }) => eq(meals.id, id),
+    orderBy: (meals) => meals.created_at,
   });
 
   return meal;

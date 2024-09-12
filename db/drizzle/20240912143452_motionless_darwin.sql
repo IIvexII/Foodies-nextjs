@@ -1,0 +1,1 @@
+ALTER TABLE `meals` ADD `created_at` text;

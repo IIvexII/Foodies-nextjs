@@ -1,11 +1,12 @@
 "use server";
-import fs from "fs";
-import { v4 as uuidv4 } from "uuid";
 
-import { createMeal } from "@/db/queries/meals";
+import sharp from "sharp";
+import { v4 as uuidv4 } from "uuid";
 import { redirect } from "next/navigation";
 
-export async function shareMeal(formData: FormData) {
+import { createMeal } from "@/db/queries/meals";
+
+export async function shareMeal(prevFormData: any, formData: FormData) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const title = formData.get("title") as string;
@@ -13,24 +14,43 @@ export async function shareMeal(formData: FormData) {
   const instructions = formData.get("instructions") as string;
   const image = formData.get("image") as File;
 
-  // prepare the name and path for the image
-  const extension = image.name.split(".").pop();
-  const imageName = `${uuidv4()}-${Buffer.from(image.name).toString("hex")}`;
-  const imagePath = `public/images/${imageName}.${extension}`;
+  // validate the form data if there is any missing data
+  if (!name || !email || !title || !summery || !instructions || !image) {
+    return {
+      message: "Please fill all the fields",
+    };
+  }
 
-  // save image in public/images
+  // prepare the name for the image and use .webp format
+  const imageName = uuidv4();
+  const imagePath = `public/images/${imageName}.webp`;
+
+  // convert and downscale the image using sharp
   const buffer = await image.arrayBuffer();
-  fs.writeFileSync(imagePath, Buffer.from(buffer));
+
+  try {
+    // downscale image and convert to .webp format
+    await sharp(Buffer.from(buffer))
+      .resize({ width: 800 })
+      .webp({ quality: 80 })
+      .toFile(imagePath);
+  } catch (error) {
+    return {
+      message:
+        "Please upload a valid image in valid format like .jpg, .jpeg, .png, webp, etc.",
+    };
+  }
 
   // save meal in db
   createMeal({
     title,
-    slug: title.toLowerCase().replace(" ", "-"),
-    image: `/images/${imageName}.${extension}`,
+    slug: title.toLowerCase().replace(/ /g, "-"), // Handle spaces correctly
+    image: `/images/${imageName}.webp`,
     summary: summery,
     instructions,
     creator: name,
     creator_email: email,
+    created_at: new Date().toISOString(),
   });
 
   redirect("/meals");

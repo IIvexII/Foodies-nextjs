@@ -12,4 +12,5 @@ export const meals = sqliteTable("meals", {
   instructions: text("instructions").notNull(),
   creator: text("creator").notNull(),
   creator_email: text("creator_email").notNull(),
+  created_at: text("created_at").$defaultFn(() => new Date().toISOString()),
 });

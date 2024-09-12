@@ -1,3 +1,4 @@
+import { getPlaceholderImage } from '@/utils/image'
 import { CTAButton } from "@/components/cta-button";
 import Image from "next/image";
 
@@ -12,10 +13,20 @@ interface MealGridProps {
   className?: string;
 }
 
-export default function MealGrid({ meals, className }: MealGridProps) {
+export default async function MealGrid({ meals, className }: MealGridProps) {
+  const mealsWithPlaceholders = await Promise.all(
+    meals.map(async (meal) => {
+      const placeholder = await getPlaceholderImage(meal.image)
+      return {
+        ...meal,
+        placeholder
+      };
+    }),
+  )
+
   return (
     <div className={`mt-16 grid grid-cols-3 gap-8 ${className}`}>
-      {meals.map((meal) => {
+      {mealsWithPlaceholders.map((meal) => {
         return (
           <div
             key={meal.id}
@@ -27,6 +38,8 @@ export default function MealGrid({ meals, className }: MealGridProps) {
                 alt={meal?.title}
                 width={400}
                 height={200}
+                blurDataURL={meal.placeholder}
+                placeholder="blur"
                 className="h-full rounded-t-lg object-cover"
               />
             </div>
