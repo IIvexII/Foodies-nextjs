@@ -8,6 +8,7 @@ interface MealPageProps {
     id: string;
   };
 }
+
 export default async function MealPage({ params }: MealPageProps) {
   const meal = await getMeal(params.id);
 

@@ -23,7 +23,7 @@ export default function MealsPage() {
         <p className="text-2xl font-light">
           Choose your favorite and cook it is easy and fun!
         </p>
-        <CTAButton className="place-self-start">
+        <CTAButton className="place-self-start" href="/meals/share">
           Share Your Favorite Recipe
         </CTAButton>
       </header>
