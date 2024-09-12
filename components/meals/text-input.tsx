@@ -9,7 +9,7 @@ export default function TextInput({ label, name, type = "text" }: TextInputProps
     const renderInput = () => {
         if (type === "textarea") {
             return (
-                <textarea id={name} rows={8} className="p-4 bg-slate-900 border border-gray-700 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-gray-500 focus:ring-offset-0 focus:ring-offset-gray-900 text-gray-400 text-xl placeholder-gray-500" />
+                <textarea id={name} rows={8} name={name} className="p-4 bg-slate-900 border border-gray-700 rounded-lg focus:border-gray-500 focus:outline-none focus:ring-gray-500 focus:ring-offset-0 focus:ring-offset-gray-900 text-gray-400 text-xl placeholder-gray-500" />
             );
         }
 

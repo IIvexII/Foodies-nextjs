@@ -1,4 +1,5 @@
 import { db } from "@/db";
+import { meals } from "../schema";
 
 export async function getMeals() {
   const meals = await db.query.meals.findMany();
@@ -12,4 +13,10 @@ export async function getMeal(id: string) {
   });
 
   return meal;
+}
+
+export async function createMeal(meal: any) {
+  const newMeal = await db.insert(meals).values(meal).execute();
+
+  return newMeal;
 }
