@@ -1,7 +1,7 @@
 import { resetDatabase } from "@/db/reset";
 import { NextResponse } from "next/server";
 
-export async function GET(req: any) {
+export async function GET() {
   resetDatabase();
 
   return NextResponse.json({
