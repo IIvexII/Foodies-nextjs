@@ -12,6 +12,7 @@
     "db:seed": "tsx ./db/seed.ts"
   },
   "dependencies": {
+    "@uploadthing/react": "^6.8.0",
     "better-sqlite3": "^11.3.0",
     "drizzle-orm": "^0.33.0",
     "next": "14.2.9",
@@ -19,6 +20,7 @@
     "react-dom": "^18.3.1",
     "sharp": "^0.33.5",
     "tsx": "^4.19.0",
+    "uploadthing": "^6.13.3",
     "uuid": "^10.0.0"
   },
   "devDependencies": {

@@ -3,8 +3,11 @@
 import sharp from "sharp";
 import { v4 as uuidv4 } from "uuid";
 import { redirect } from "next/navigation";
+import { UTApi } from "uploadthing/server";
 
 import { createMeal } from "@/db/queries/meals";
+import { UploadFileResult } from "uploadthing/types";
+import { revalidatePath } from "next/cache";
 
 export async function shareMeal(prevFormData: any, formData: FormData) {
   const name = formData.get("name") as string;
@@ -27,13 +30,14 @@ export async function shareMeal(prevFormData: any, formData: FormData) {
 
   // convert and downscale the image using sharp
   const buffer = await image.arrayBuffer();
+  let optimizedImageBuffer: Buffer;
 
   try {
     // downscale image and convert to .webp format
-    await sharp(Buffer.from(buffer))
+    optimizedImageBuffer = await sharp(Buffer.from(buffer))
       .resize({ width: 800 })
       .webp({ quality: 80 })
-      .toFile(imagePath);
+      .toBuffer();
   } catch (error) {
     return {
       message:
@@ -41,11 +45,32 @@ export async function shareMeal(prevFormData: any, formData: FormData) {
     };
   }
 
+  const file = new File([optimizedImageBuffer], `${imageName}.webp`, {
+    type: "image/webp",
+  });
+
+  // upload the image to the file storage
+  const utapi = new UTApi();
+  let uploadedFile: UploadFileResult;
+
+  try {
+    uploadedFile = await utapi.uploadFiles(file);
+
+    // check if the file is uploaded successfully
+    if (!uploadedFile.data) throw new Error();
+  } catch (error) {
+    return {
+      message: "Failed to upload the image, please try again later",
+    };
+  }
+
+  const imageUrl = uploadedFile.data.url;
+
   // save meal in db
   createMeal({
     title,
     slug: title.toLowerCase().replace(/ /g, "-"), // Handle spaces correctly
-    image: `/images/${imageName}.webp`,
+    image: imageUrl,
     summary: summery,
     instructions,
     creator: name,
@@ -53,5 +78,6 @@ export async function shareMeal(prevFormData: any, formData: FormData) {
     created_at: new Date().toISOString(),
   });
 
+  revalidatePath("/meals");
   redirect("/meals");
 }
