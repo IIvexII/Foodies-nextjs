@@ -1,13 +1,13 @@
 "use client";
 
-import { shareMeal } from "@/actions/share";
+import { useFormState } from "react-dom";
 
+import { shareMeal } from "@/actions/share";
 import HighLightedText from "@/components/highlighted-text";
 import ImagePicker from "@/components/meals/image-picker";
 import MealSubmitBtn from "@/components/meals/meal-submit-btn";
 import TextInput from "@/components/meals/text-input";
 
-import { useFormState } from "react-dom";
 
 export default function ShareMealPage() {
   const [state, formAction] = useFormState(shareMeal, { message: "" });

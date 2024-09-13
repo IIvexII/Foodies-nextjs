@@ -3,6 +3,23 @@ import Image from "next/image";
 import mealIcon from "@/assets/icons/meal.png";
 import communityIcon from "@/assets/icons/community.png";
 import eventsIcon from "@/assets/icons/events.png";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Join Our Community - Foodies',
+  description: 'Become part of the Foodies community and share your own recipes with fellow food lovers.',
+  openGraph: {
+    title: 'Join Our Community - Foodies',
+    description: 'Become part of the Foodies community and share your own recipes with fellow food lovers.',
+    images: ['/images/pizza.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Join Our Community - Foodies',
+    description: 'Become part of the Foodies community and share your own recipes with fellow food lovers.',
+    images: ['/images/pizza.jpg'],
+  },
+};
 
 export default function CommunityPage() {
   return (

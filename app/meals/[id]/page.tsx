@@ -2,10 +2,36 @@ import Image from "next/image";
 import { getMeal } from "@/db/queries/meals";
 import HighLightedText from "@/components/highlighted-text";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 interface MealPageProps {
   params: {
     id: string;
+  };
+}
+
+export async function generateMetadata({ params }: MealPageProps): Promise<Metadata> {
+  const id = params.id;
+  const meal = await getMeal(id);
+
+  if (!meal) {
+    notFound();
+  }
+
+  return {
+    title: `${meal.title} | Foodies`,
+    description: meal.summary,
+    openGraph: {
+      title: `${meal.title} | Foodies`,
+      description: meal.summary,
+      images: [meal.image],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${meal.title} | Foodies`,
+      description: meal.summary,
+      images: meal.image,
+    },
   };
 }
 

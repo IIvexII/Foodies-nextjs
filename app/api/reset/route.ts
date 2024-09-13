@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export const revalidate = 0;
 
 export async function GET() {
-  resetDatabase();
+  await resetDatabase();
 
   return NextResponse.json({
     message: "Database reset to seed state successfully.",

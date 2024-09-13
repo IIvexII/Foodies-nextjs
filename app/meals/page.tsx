@@ -1,14 +1,32 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 
 import { CTAButton } from "@/components/cta-button";
 import HighLightedText from "@/components/highlighted-text";
 import MealGrid from "@/components/image/meal-grid";
 import Loader from "@/components/loeader";
-
 import { getMeals } from "@/db/queries/meals";
 
 // make this page dynamic
 export const revalidate = 0;
+
+// SEO metadata
+export const metadata: Metadata = {
+  title: 'Browse Meals - Foodies',
+  description: 'Explore a wide variety of recipes shared by our community on Foodies.',
+  openGraph: {
+    title: 'All Meals - Foodies',
+    description: 'Explore a wide variety of recipes shared by our community on Foodies.',
+    images: ['/images/pizza.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'All Meals - Foodies',
+    description: 'Explore a wide variety of recipes shared by our community on Foodies.',
+    images: ['/images/pizza.jpg'],
+  },
+};
+
 
 async function ShowMeals() {
   const meals = await getMeals();
