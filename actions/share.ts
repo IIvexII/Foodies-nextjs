@@ -24,9 +24,15 @@ export async function shareMeal(prevFormData: any, formData: FormData) {
     };
   }
 
+  // Check if the file size is under 4MB
+  if (image.size > 4_000_000) {
+    return {
+      message: "Image size exceeds the maximum limit of 4MB",
+    };
+  }
+
   // prepare the name for the image and use .webp format
   const imageName = uuidv4();
-  const imagePath = `public/images/${imageName}.webp`;
 
   // convert and downscale the image using sharp
   const buffer = await image.arrayBuffer();

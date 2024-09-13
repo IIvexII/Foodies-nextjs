@@ -1,54 +1,12 @@
 {
   "version": "7",
-  "dialect": "sqlite",
+  "dialect": "postgresql",
   "entries": [
     {
       "idx": 0,
-      "version": "6",
-      "when": 1726015097903,
-      "tag": "20240911003817_greedy_gargoyle",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "6",
-      "when": 1726015812316,
-      "tag": "20240911005012_peaceful_johnny_blaze",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "6",
-      "when": 1726016217438,
-      "tag": "20240911005657_stormy_violations",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1726016536484,
-      "tag": "20240911010216_daffy_morph",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "6",
-      "when": 1726016700140,
-      "tag": "20240911010500_flaky_lila_cheney",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "6",
-      "when": 1726016818450,
-      "tag": "20240911010658_worthless_nightmare",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "6",
-      "when": 1726151692352,
-      "tag": "20240912143452_motionless_darwin",
+      "version": "7",
+      "when": 1726212409688,
+      "tag": "20240913072649_worried_genesis",
       "breakpoints": true
     }
   ]

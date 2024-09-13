@@ -13,7 +13,9 @@
   },
   "dependencies": {
     "@uploadthing/react": "^6.8.0",
+    "@vercel/postgres": "^0.10.0",
     "better-sqlite3": "^11.3.0",
+    "dotenv": "^16.4.5",
     "drizzle-orm": "^0.33.0",
     "next": "14.2.9",
     "react": "^18.3.1",

@@ -1,10 +1,7 @@
-import { sqliteTable, text } from "drizzle-orm/sqlite-core";
-import { v4 as uuidv4 } from "uuid";
+import { pgTable, text, uuid } from "drizzle-orm/pg-core";
 
-export const meals = sqliteTable("meals", {
-  id: text("id")
-    .primaryKey()
-    .$defaultFn(() => uuidv4()),
+export const meals = pgTable("meals", {
+  id: uuid("id").defaultRandom().primaryKey(),
   title: text("title").notNull().unique(),
   slug: text("slug").notNull().unique(),
   image: text("image").notNull(),
