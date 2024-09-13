@@ -7,6 +7,9 @@ import Loader from "@/components/loeader";
 
 import { getMeals } from "@/db/queries/meals";
 
+// make this page dynamic
+export const revalidate = 0;
+
 async function ShowMeals() {
   const meals = await getMeals();
 

@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { meals } from "./schema";
 
-const dummyMeals = [
+export const dummyMeals = [
   {
     title: "Juicy Cheese Burger",
     slug: "juicy-cheese-burger",
@@ -164,4 +164,14 @@ const dummyMeals = [
   },
 ];
 
-db.insert(meals).values(dummyMeals).execute();
+export function seedDatabase() {
+  db.delete(meals).execute();
+  db.insert(meals).values(dummyMeals).execute();
+}
+
+// run this only if this file is executed directly not imported
+if (require.main === module) {
+  //   db.delete(meals).execute();
+  //   db.insert(meals).values(dummyMeals).execute();
+  seedDatabase();
+}
