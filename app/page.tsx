@@ -6,12 +6,12 @@ export default function Home() {
     <>
       <Hero />
 
-      <main className="mx-auto flex max-w-screen-md flex-col gap-16 text-center">
+      <main className="mx-auto flex max-w-screen-md flex-col gap-16 text-justify md:text-center px-10">
         <section className="flex flex-col gap-8">
           <HighLightedText className="text-5xl font-semibold">
             How it works
           </HighLightedText>
-          <p className="text-2xl leading-normal text-gray-300">
+          <p className="max-sm:-mt-4 text-2xl leading-normal text-gray-300">
             NextLevel Food is a platform for foodies to share their favorite
             recipes with the world. It&apos;s a place to discover new dishes,
             and to connect with other food lovers.
@@ -22,7 +22,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="flex flex-col gap-8">
+        <section className="flex flex-col gap-0 md:gap-8">
           <HighLightedText className="text-5xl font-semibold">
             Why NextLevel Food?
           </HighLightedText>
