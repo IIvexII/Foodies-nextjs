@@ -7,8 +7,8 @@ import Loader from "@/components/loeader";
 
 import { getMeals } from "@/db/queries/meals";
 
-// make this page dynamic every 30 min as well as the revalidatePath
-export const revalidate = 1800;
+// make this page dynamic
+export const revalidate = 0;
 
 async function ShowMeals() {
   const meals = await getMeals();

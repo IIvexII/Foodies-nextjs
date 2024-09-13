@@ -1,0 +1,15 @@
+name: Reset Server to freeze state
+
+on:
+  schedule:
+    - cron: "0 */6 * * *" # Runs every 6 hours
+  workflow_dispatch: # Allows manual trigger
+
+jobs:
+  call_api:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call API
+        run: |
+          curl -X POST https://foodies.zafeer.pk/api/reset
