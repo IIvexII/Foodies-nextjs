@@ -12,4 +12,4 @@ jobs:
     steps:
       - name: Call API
         run: |
-          curl -X POST https://foodies.zafeer.pk/api/reset
+          curl -X GET https://foodies.zafeer.pk/api/reset
